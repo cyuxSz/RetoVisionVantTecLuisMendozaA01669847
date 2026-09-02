@@ -58,7 +58,7 @@ Agregar al `PATH` del sistema:
 - La carpeta `bin` de OpenCV.
 
 Y agregar la variable de librería:
-- La carpeta `lib` de OpenCV (para que el enlazador la encuentre).
+- La carpeta `lib` de OpenCV.
 
 ### 3. Extensiones de Visual Studio Code
 
