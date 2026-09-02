@@ -140,3 +140,5 @@ cualquier otra clase detectada se etiqueta genéricamente como `"objeto"`. vease
 - Jocher, G., Qiu, J., Liu, M., Lyu, S., Akyon, F. C., & Kalfaoglu, M. E. (2026). *Ultralytics YOLO26: Unified real-time end-to-end vision models*. arXiv. https://arxiv.org/html/2606.03748v1
 - OpenCV. (s. f.). *Deep neural networks (dnn module)*. OpenCV Documentation. https://docs.opencv.org/4.x/d2/d58/tutorial_table_of_content_dnn.html
 - OpenCV. (2026). *OpenCV 5.0 release announcement*. https://opencv.org/opencv-5/
+- Chakrabarty, S. (2026, 9 de julio). How to run object detection with OpenCV 5. LearnOpenCV. https://learnopencv.com/how-to-run-object-detection-with-opencv-5/#32-export-yolo26-to-onnx
+- Chakrabarty, S. (2026, 28 de julio). Object detection with OpenCV 5 in C++: YOLO26 pose and segmentation. LearnOpenCV. https://learnopencv.com/opencv-5-cpp-object-detection-yolo26/
