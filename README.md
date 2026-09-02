@@ -12,7 +12,7 @@ detección.
 
 ```
 ├── CMakeLists.txt      # configuración de compilación (CMake + OpenCV)
-├── main.cpp            # código fuente de la aplicación
+├── main.cpp            # código fuente
 └── yolo26n.onnx        # no se sube al repositorio por tamaño. Se genera localmente siguiendo el paso 6 de la instalación, y `CMakeLists.txt` ya se encarga de copiarlo junto al ejecutable en cada compilación.
 ```
 
