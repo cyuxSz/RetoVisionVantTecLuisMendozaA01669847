@@ -1,7 +1,7 @@
 # RetoVisionVantTecLuisMendozaA01669847
 # Detección de obstáculos para un SDV — YOLO26 + OpenCV 5
 
-**Autor:** Luis Eduardo Mendoza Menéndez — A01669847
+**Autor:** Luis Eduardo Mendoza Menéndez: A01669847
 
 Aplicación en C++ que captura video en vivo de una webcam, detecta obstáculos
 (personas, mochilas, sillas, etc.) usando el detector **YOLO26-nano** exportado
