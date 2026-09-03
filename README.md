@@ -4,7 +4,7 @@
 **Autor:** Luis Eduardo Mendoza Menéndez: A01669847
 
 Aplicación en C++ que captura video en vivo de una webcam, detecta obstáculos
-(personas, mochilas, sillas, etc.) usando el detector **YOLO26-nano** exportado
+(personas, mochilas, sillas, etc.) usando el detector **YOLO26-nano** (se elige nano para menor carga computacional) exportado
 a ONNX, y dibuja sobre cada cuadro la clase, la confianza y la posición de cada
 detección.
 
@@ -31,8 +31,8 @@ detección.
    para las clases más comunes de interior; el resto se etiqueta como
    "objeto") y el porcentaje de confianza.
 
-El código fuente (`main.cpp`) incluye comentarios explicando cada función,
-parámetro y decisión de diseño.
+El código fuente (`main.cpp`) incluye comentarios explicando funciones,
+parámetros y decisiones de diseño.
 
 ## Requisitos
 
@@ -70,7 +70,7 @@ Instalar:
 
 ### 4. Generar el proyecto con CMake
 
-  Usando la paleta de comandos de VS Code: **CMake: Quick Start**.
+  Usando el comando de VS Code: **CMake: Quick Start**.
 
 ### 5. Exportar el modelo YOLO26-nano a ONNX
 
@@ -107,7 +107,7 @@ add_custom_command(TARGET OpenCVPruebaVantTec POST_BUILD
 
 ## Ejecución
 
-Desde la carpeta donde quedó el ejecutable o haciendo build en cmake en vscode y posteriormente compilando ahi mismo (no en el .cpp)
+Desde la carpeta donde quedó el ejecutable o haciendo build en `CMakeLists.txt` en vscode y posteriormente compilando ahi mismo (no en el .cpp)
 
 ```bash
 ./OpenCVPruebaVantTec
@@ -116,7 +116,7 @@ Desde la carpeta donde quedó el ejecutable o haciendo build en cmake en vscode 
 Se abrirá una ventana con el video de la webcam y las detecciones dibujadas en
 tiempo real.
 
-- Presiona **ESC** o cierra la ventana para terminar el programa.
+- Presiona **ESC** para terminar el programa.
 
 ## Configuración
 
@@ -130,10 +130,9 @@ resto del código:
 
 ## Clases detectadas
 
-El modelo reconoce las 80 clases del dataset **COCO**. Este proyecto traduce
-al español únicamente las más relevantes para un entorno de interior/prueba
+El modelo reconoce las 80 clases del dataset COCO. Se usan únicamente las más relevantes para un entorno de interior para una prueba sencilla
 (persona, mochila, botella, taza, silla, tv, laptop, teclado, celular, libro);
-cualquier otra clase detectada se etiqueta genéricamente como `"objeto"`. vease `main.cpp` en la linea 116
+cualquier otra clase detectada se etiqueta genéricamente como `"objeto"`. véase `main.cpp` en la linea 116 (si bien únicamente se debería escribir el nombre entre comillas para ahorrar algo de tiempo se tomó esta decisión, también quedando más compacto) 
 
 ## Referencias
 
