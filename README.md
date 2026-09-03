@@ -1,4 +1,4 @@
-# RetoVisionVantTecLuisMendozaA01669847
+# Reto de Vision VantTec LuisMendoza A01669847
 # Detección de obstáculos para un SDV — YOLO26 + OpenCV 5
 
 **Autor:** Luis Eduardo Mendoza Menéndez: A01669847
