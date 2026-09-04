@@ -16,7 +16,7 @@ detección.
 └── yolo26n.onnx        # no se sube al repositorio por tamaño. Se genera localmente siguiendo el paso 6 de la instalación, y `CMakeLists.txt` ya se encarga de copiarlo junto al ejecutable en cada compilación.
 ```
 
-## Cómo funciona (resumen técnico)
+## Cómo funciona:
 
 1. **Letterbox**: cada cuadro de la webcam se reescala a 640×640 sin deformar
    la imagen (se rellena el sobrante con gris), porque la red espera una
@@ -133,6 +133,8 @@ resto del código:
 El modelo reconoce las 80 clases del dataset COCO. Se usan únicamente las más relevantes para un entorno de interior para una prueba sencilla
 (persona, mochila, botella, taza, silla, tv, laptop, teclado, celular, libro);
 cualquier otra clase detectada se etiqueta genéricamente como `"objeto"`. véase `main.cpp` en la linea 116 (si bien únicamente se debería escribir el nombre entre comillas para ahorrar algo de tiempo se tomó esta decisión, también quedando más compacto) 
+
+Además he de decir que lo probé con las clases mencionadas ahí arriba y efectivamente reconoce los objetos en la cámara web interna de mi laptop.
 
 ## Referencias
 
