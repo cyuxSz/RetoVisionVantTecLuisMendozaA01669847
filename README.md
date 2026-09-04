@@ -125,7 +125,7 @@ resto del código:
 
 | Constante | Qué controla | Valor actual |
 |---|---|---|
-| `tentrada` | Tamaño de entrada de la red (debe coincidir con el usado al exportar el ONNX) | `640` |
+| `tentrada (main)` | Tamaño de entrada de la red (debe coincidir con el usado al exportar el ONNX) | `640` |
 | `uconfianza` | Umbral mínimo de confianza para mostrar una detección | `0.4` |
 
 ## Clases detectadas
