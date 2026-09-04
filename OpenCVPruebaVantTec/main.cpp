@@ -26,40 +26,40 @@ struct Deteccion {
     int clase;         
 };
 
-// r, dx y dy son parámetros por referencia porque una función en C++ solo
+// escala, relleno_x y relleno_y son parámetros por referencia porque una función en C++ solo
 // puede "retornar" un valor con `return`; para regresar 3 datos más, se
 // modifican directamente las variables que (detectar()) le pasó.
 
-Mat letterbox(const Mat& img, int tam, float& r, int& dx, int& dy) {
+Mat letterbox(const Mat& img, int tentrada, float& escala, int& relleno_x, int& relleno_y) {
     // Se toma el menor de los dos factores de escala posibles, para que el
     // lado más grande de la imagen quepa justo en "tam" sin salirse.
-    r = std::min((float)tam / img.cols, (float)tam / img.rows);
+    escala = std::min((float)tentrada / img.cols, (float)tentrada / img.rows);
 
-    int nw = (int)std::round(img.cols * r); 
-    int nh = (int)std::round(img.rows * r);  
+    int nuevoAncho = (int)std::round(img.cols * escala); 
+    int nuevoAlto = (int)std::round(img.rows * escala);  
 
     // El espacio sobrante se reparte mitad y mitad, para centrar la imagen.
-    dx = (tam - nw) / 2;
-    dy = (tam - nh) / 2;
+    relleno_x = (tentrada - nuevoAncho) / 2;
+    relleno_y = (tentrada - nuevoAlto) / 2;
 
     Mat escalada;
-    resize(img, escalada, Size(nw, nh));
+    resize(img, escalada, Size(nuevoAncho, nuevoAlto));
 
     // Crea un lienzo cuadrado final, mismo tipo de píxel que la imagen original, relleno de gris.
-    Mat salida(tam, tam, img.type(), Scalar(114, 114, 114));
+    Mat salida(tentrada, tentrada, img.type(), Scalar(114, 114, 114));
 
     // Pega la imagen ya escalada dentro del lienzo, en la posición (dx, dy).
     // out(Rect()) crea una "ventana" (ROI) sobre el lienzo grande.
-    escalada.copyTo(salida(Rect(dx, dy, nw, nh)));
+    escalada.copyTo(salida(Rect(relleno_x , relleno_y, nuevoAncho, nuevoAlto)));
     return salida;
 }
 
 
 // Corre un cuadro de video por la red y devuelve las detecciones que superan el umbral de confianza.
-std::vector<Deteccion> detectar(Net& red, const Mat& frame, int tam, float uconfianza) {
-    float r; int dx, dy;
-    Mat entrada = letterbox(frame, tam, r, dx, dy);
-    Mat blob = blobFromImage(entrada, 1.0 / 255.0, Size(tam, tam), Scalar(), true, false);
+std::vector<Deteccion> detectar(Net& red, const Mat& frame, int tentrada, float uconfianza) {
+    float escala; int relleno_x, relleno_y;
+    Mat entrada = letterbox(frame, tentrada, escala, relleno_x, relleno_y);
+    Mat blob = blobFromImage(entrada, 1.0 / 255.0, Size(tentrada, tentrada), Scalar(), true, false);
     red.setInput(blob);
     Mat salida = red.forward();  
     int filas = salida.size[salida.dims - 2];
@@ -77,10 +77,10 @@ std::vector<Deteccion> detectar(Net& red, const Mat& frame, int tam, float uconf
         // Revierte el letterbox: resta el relleno y divide entre el factor de escala, para regresar la caja al sistema de coordenadas del frame
         // original (no del cuadro cuadrado con relleno gris).
         Rect2f caja(
-            (fila[0] - dx) / r,
-            (fila[1] - dy) / r,
-            (fila[2] - fila[0]) / r,
-            (fila[3] - fila[1]) / r
+            (fila[0] - relleno_x) / escala,
+            (fila[1] - relleno_y) / escala,
+            (fila[2] - fila[0]) / escala,
+            (fila[3] - fila[1]) / escala
         );
 
         resultado.push_back({caja, confianza, (int)fila[5]});
