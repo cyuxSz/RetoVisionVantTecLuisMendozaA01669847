@@ -1,3 +1,4 @@
+// Prueba de vision vanttec, hecho por: Luis Eduardo Mendoza Menendez A01669847
 // Carga un modelo YOLO26 exportado a ONNX, corre inferencia en vivo sobre la
 // webcam, y dibuja cada detección (clase, confianza) sobre el video.
 
@@ -10,6 +11,7 @@
 using namespace cv;
 using namespace cv::dnn;
 
+//uso solo unas clases del datases coco para que sea un poco mas breve el codigo y ademas asi no hayq ue nombrar a todas para español
 static const std::unordered_map<int, std::string> clases = {
     {0, "persona"}, {24, "mochila"}, {39, "botella"}, {41, "taza"},
     {56, "silla"},  {62, "tv"},      {63, "laptop"},  {66, "teclado"},
@@ -88,7 +90,7 @@ std::vector<Deteccion> detectar(Net& red, const Mat& frame, int tam, float uconf
 
 int main() {
     // Carga el modelo YOLO26-nano ya exportado a ONNX
-    //ENGINE_AUTO deja que OpenCV 5 elija el motor 
+    // ENGINE_AUTO deja que OpenCV 5 elija el motor 
     Net red = readNetFromONNX(String("yolo26n.onnx"), (int)ENGINE_AUTO);
     if (red.empty()) {
         std::cerr << "No se pudo cargar yolo26n.onnx. Verifica que este junto al ejecutable.\n";
@@ -101,8 +103,8 @@ int main() {
         return -1;
     }
 
-    const int tentrada    = 640;
-    const float uconfianza = 0.4f;
+    const int tentrada    = 640; //tamaño de entrada que debe coincidir con el exportado en este caso 640, vease script de exportación a onnx en el readme
+    const float uconfianza = 0.4f; //umbral de confianza para que detecte mas preciso y no cosas que no este tan seguro
     const char* ventana    = "Deteccion de obstaculos SDV";
 
     Mat frame;
@@ -113,7 +115,7 @@ int main() {
         for (const auto& d : detectar(red, frame, tentrada, uconfianza)) {
             rectangle(frame, d.caja, Scalar(0, 255, 0), 2);
             auto it = clases.find(d.clase);
-            std::string etiqueta = (it != clases.end()) ? it->second : "objeto";
+            std::string etiqueta = (it != clases.end()) ? it->second : "objeto"; //para el resto de clases se le llamara simplemente objeto 
 
             putText(frame, etiqueta + " " + std::to_string((int)(d.confianza * 100)) + "%",
                     Point((int)d.caja.x, (int)d.caja.y - 5),
