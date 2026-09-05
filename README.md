@@ -132,7 +132,7 @@ resto del código:
 
 El modelo reconoce las 80 clases del dataset COCO. Se usan únicamente las más relevantes para un entorno de interior para una prueba sencilla
 (persona, mochila, botella, taza, silla, tv, laptop, teclado, celular, libro);
-cualquier otra clase detectada se etiqueta genéricamente como `"objeto"`. véase `main.cpp` en la linea 116 (si bien únicamente se debería escribir el nombre entre comillas para ahorrar algo de tiempo se tomó esta decisión, también quedando más compacto) 
+cualquier otra clase detectada se etiqueta genéricamente como `"objeto"`. véase en `main.cpp` (si bien únicamente se debería escribir el nombre entre comillas para ahorrar algo de tiempo se tomó esta decisión, también quedando más compacto) 
 
 Además he de decir que lo probé con las clases mencionadas ahí arriba y efectivamente reconoce los objetos en la cámara web interna de mi laptop.
 
